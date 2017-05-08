@@ -1,27 +1,32 @@
-body {
-  padding-top: 330px;
- 
-  background-image: url("https://www.lonelyplanet.com/travel-blog/tip-article/wordpress_uploads/2015/08/GettyImages-470027170_medium_cs.jpg");
-
-  background-repeat: no-repeat;
-
+html {
+  background-image: url("https://wallpaperscraft.com/image/yosemite_national_park_lake_rocks_mountains_autumn_nature_96336_3840x2400.jpg");
   background-size: cover;
-
-  
-
+  background-repeat: no-repeat;
+  height: 100%;
+  z-index: -1;
+  background-color: lightgray;
 }
 
+body {
+  margin-top: 330px;
+  opacity: 1;
+  background-color: rgba(0, 0, 0, 0);
 
+}
 
 .welcome {
 
 	opacity: 1;
 	position: relative;
-	left:145vh;
-	bottom: 40vh;
-	font-family: 'Dosis', sans-serif;;
+	/*left:145vh;
+	bottom: 40vh;*/
+	font-family: 'Dosis', sans-serif;
 	font-size: 24px;
-	color:white;
+	color:black;
+  margin: auto;
+  width: 50%;
+  height: 50%;
+  text-align: center;
 
 }
 
@@ -31,6 +36,8 @@ body {
 	opacity: 1;
 	background-color: white;
 	top: 88px;
+  border-width: 1px;
+  border-color: lightgray;
 	width: 50vw;
 	height: 50vh;
 }
@@ -148,4 +155,8 @@ body {
 .hero-search-filter-form-near:focus {
   border: 0;
   box-shadow: none;
+}
+
+.sticky-topbar {
+  width: 100%;
 }

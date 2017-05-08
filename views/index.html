@@ -11,23 +11,23 @@
     <link href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.1/css/foundation.min.css" integrity="sha256-itWEYdFWzZPBG78bJOOiQIn06QCgN/F0wMDcC4nOhxY="
         crossorigin="anonymous" />
-    <link rel="stylesheet" href="/Views/css/app.css" />
+    <link rel="stylesheet" href="css/app.css" />
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
         crossorigin="anonymous"></script>
 </head>
 
 <body>
-    <a href="#" class="welcome" data-open="myModal">Login to begin your adventure</a>
-    <header class=" toolbar hero-search-filter">
+    <!--<a href="#" class="welcome" data-open="myModal">Login to begin your adventure</a>-->
+    <header class="toolbar hero-search-filter">
         <div class="hero-search-filter-content">
-            <form class="hero-search-filter-form" action="">
+            <!--<form class="hero-search-filter-form" action="">
                 <label for="findtext">Find</label>
                 <input id="findtext" class="hero-search-filter-form-find" type="text" />
                 <div class="divider">&nbsp;</div>
                 <label for="findlocate">Near</label>
                 <input id="findlocate" class="hero-search-filter-form-near" type="text" />
                 <button class="button"><i class="fa fa-search">Search</i></button>
-            </form>
+            </form>-->
             <ul class="hero-search-filter-menu menu align-center">
                 <li><a href="#"><i class="fa fa-cutlery" aria-hidden="true"></i> Cities</a></li>
                 <li><a href="#"><i class="fa fa-glass" aria-hidden="true"></i> Countries</a></li>
@@ -46,6 +46,10 @@
         crossorigin="anonymous"></script>
     <script>
         $(document).foundation();
+        $(document).ready(function () {
+            console.log("ready");
+            $("#myModal").foundation("open");
+        });
     </script>
 </body>
 
