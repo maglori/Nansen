@@ -12,7 +12,9 @@
     "body-parser": "^1.17.1",
     "express": "^4.15.2",
     "express-handlebars": "^3.0.0",
-    "mysql": "^2.13.0"
+    "mysql": "^2.13.0",
+    "request": "^2.81.0",
+    "yelp-fusion": "^1.0.3"
   },
   "devDependencies": {},
   "repository": {
