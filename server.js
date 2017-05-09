@@ -32,6 +32,7 @@ passport.use(new GoogleStrategy({
 			// console.log(accessToken);
 			cb(null, accessToken, profile, refreshToken);
       console.log(profile.id);
+      console.log(profile.name.givenName);
   }
 ));
 
