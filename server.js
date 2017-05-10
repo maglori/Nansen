@@ -1,8 +1,9 @@
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
-
 var exphbs = require("express-handlebars");
+
+var db = require('./models')
 
 var passport = require('passport');
 var GoogleStrategy = require('passport-google-oauth20').Strategy;
@@ -94,6 +95,10 @@ app.set("view engine", "handlebars");
 
 // app.use("/", routes);
 
-app.listen(3000, function() {
-  console.log('Server listening on localhost:3000')
+
+
+db.sequelize.sync({ force: true }).then(function() {
+  app.listen(3000, function() {
+    console.log('Server listening on localhost:3000')
+  });
 });

@@ -22,6 +22,4 @@ function BasetripAPI() {
     request(options, callback);
 }
 
-// BasetripAPI();
-
 module.exports = BasetripAPI;
