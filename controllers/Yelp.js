@@ -11,8 +11,8 @@ function YelpAPI() {
             const client = yelp.client(token);
         
             client.search({
-                term:'Four Barrel Coffee',
-                location: 'san francisco, ca'
+                term: term,
+                location: location
             }).then(response => {
                 console.log(response.jsonBody.businesses[0].name);
             }).catch(e => {
@@ -21,10 +21,7 @@ function YelpAPI() {
         }).catch(e => {
         console.log(e);
     });
-
     return yelp;
 };
-
-YelpAPI();
 
 module.exports = YelpAPI;
