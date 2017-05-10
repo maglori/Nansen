@@ -51,6 +51,26 @@
             $("#myModal").foundation("open");
         });
     </script>
+    <script>
+    function initMap() {
+        var geocoder = new google.maps.Geocoder;
+
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(function(position) {
+            var pos = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude
+            };
+            geocoder.geocode({'location': pos}, function(results, status) {
+                console.log(results)
+            });
+          });
+        };
+    };
+    </script>
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCflzUUCLlSmZfOcRuo12ZM10u42uSM160&callback=initMap">
+    </script>
 </body>
 
 </html>
