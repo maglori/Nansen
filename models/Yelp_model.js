@@ -25,6 +25,6 @@ function YelpAPI() {
     return yelp;
 };
 
-// YelpAPI();
+YelpAPI();
 
 module.exports = YelpAPI;

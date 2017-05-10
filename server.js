@@ -1,5 +1,9 @@
 var express = require('express');
 var app = express();
+var bodyParser = require('body-parser');
+
+var exphbs = require("express-handlebars");
+
 var passport = require('passport');
 var GoogleStrategy = require('passport-google-oauth20').Strategy;
 var path = require('path');
@@ -37,12 +41,12 @@ passport.use(new GoogleStrategy({
 ));
 
 app.get('/', function(req, res) {
-  res.sendFile(path.join(__dirname + '/Views/index.html'));
+  res.sendFile(path.join(__dirname + '/views/index.html'));
 })
 
 // Serve static content for the app from the “public” directory in the application directory.
-app.use(express.static(process.cwd() +'/public'));
-
+app.use(express.static(process.cwd() +'/public/'));
+app.use(bodyParser.urlencoded({ extended: false }));
 
 app.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
 
@@ -57,13 +61,13 @@ app.get('/auth/google/callback', passport.authenticate('google', {
 // notice that we pass in the custom 'isAuthenticated' middleware that we created below to check if the user hitting this route is authenticated 
 app.get('/success', isAuthenticated, function(req, res) {
   // console.log(req.user);
-	res.sendFile(path.join(__dirname + '/Views/success.html'));
+	res.sendFile(path.join(__dirname + '/views/success.html'));
 })
 
 // users who are not succesfully authenticated will hit this route
 app.get('/fail', function(req, res) {
   // console.log(req.user); // check the console and you'll see that req.user is undefined
-	res.sendFile(path.join(__dirname + './Views/fail.html'));
+	res.sendFile(path.join(__dirname + '/views/fail.html'));
 })
 
 // passport lets us use the req.logout() method to end the current session
@@ -80,6 +84,15 @@ function isAuthenticated(req, res, next) {
     // if req.user does not exist redirect them to the fail page.  Here you can either redirect users back to the login page
     res.redirect('/fail');
 }
+
+
+app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+app.set("view engine", "handlebars");
+
+
+// var routes = require("./controllers");
+
+// app.use("/", routes);
 
 app.listen(3000, function() {
   console.log('Server listening on localhost:3000')
