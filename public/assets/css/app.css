@@ -13,6 +13,10 @@ body {
     background-color: rgba(0, 0, 0, 0);
 }*/
 
+@media screen and (min-width: 768px) {
+    #myModal {}
+}
+
 
 /*--------------------Slideshow Start---------------------------*/
 
@@ -580,7 +584,7 @@ p.info {
 /*--------------------Slideshow End---------------------------*/
 
 .welcome {
-    opacity: 1;
+    /*opacity: 1;*/
     position: relative;
     /*left: 145vh;*/
     /*bottom: 40vh;*/
@@ -588,7 +592,7 @@ p.info {
     font-size: 24px;
     color: black;
     margin: auto;
-    width: 25%;
+    /*width: 25%;*/
     height: 50%;
     text-align: center;
 }
@@ -601,7 +605,7 @@ p.info {
     border-width: 1px;
     border-color: lightgray;
     border-radius: 8px;
-    width: 50vw;
+    width: 60vw;
     height: 40vh;
 }
 
@@ -773,20 +777,38 @@ p.info {
 
 #sign-in-button {
     position: relative;
-    top: 3vw;
+    top: 2vw;
     left: 40vw;
-    width: 10vw;
+    width: 13vw;
     opacity: .7;
 }
 
 
+}
+#sign-in-button:hover {
+    opacity: 1;
+}
+
 /*-------------------Sign In Button End----------------------*/
 
-
 /*-------------------Index Search Bar----------------------*/
-
 #index-search {
     position: relative;
     top: 30vw;
     opacity: .9;
 }
+#search-button {
+    background-color: #5d5d5d;
+}
+@media screen and (max-width: 768px) {
+    #sign-in-button {
+        width: 90vw;
+        left: 0vw;
+    }
+}
+
+/*@media screen and (max-width: 1024px) {
+    #sign-in-button {
+        width: 20vw;
+    }
+}*/
