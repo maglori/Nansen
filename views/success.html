@@ -80,6 +80,21 @@
 						<li><input type="search" placeholder="Search"></li>
 						<li><button type="button" class="button">Search</button></li>
 					</ul>-->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.1/js/foundation.min.js" integrity="sha256-Nd2xznOkrE9HkrAMi4xWy/hXkQraXioBg9iYsBrcFrs="
+	    crossorigin="anonymous"></script>
+	<script>
+		$(document).foundation();
+		$(function () {
+			$(window).scroll(function () {
+				var winTop = $(window).scrollTop();
+				if (winTop >= 30) {
+					$("body").addClass("sticky-shrinknav-wrapper");
+				} else {
+					$("body").removeClass("sticky-shrinknav-wrapper");
+				}
+			});
+		});
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.1/js/foundation.min.js" integrity="sha256-Nd2xznOkrE9HkrAMi4xWy/hXkQraXioBg9iYsBrcFrs=" crossorigin="anonymous"></script>
     <script>
         $(document).foundation();
@@ -93,11 +108,9 @@
                 }
             });
         });
-    </script>
-</body>
-
-    <script>
-    function initMap() {
+    
+    //  Google Geolocator API data
+        function initMap() {
         var geocoder = new google.maps.Geocoder;
 
         if (navigator.geolocation) {
@@ -112,9 +125,24 @@
           });
         };
     };
+
+	//AJAX for user info
+	// $.ajax(
+	// 	{
+	// 		type: "Get",
+	// 		url: "/api/user",
+	// 		success: function(response) {
+	// 			var data = response;
+	// 			console.log(data);
+	// 		}
+	// 	});
     </script>
+  
     <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCflzUUCLlSmZfOcRuo12ZM10u42uSM160&callback=initMap">
     </script>
+</body>
 
+
+</body>
 </html>

@@ -9,6 +9,8 @@ var passport = require('passport');
 var GoogleStrategy = require('passport-google-oauth20').Strategy;
 var path = require('path');
 var session = require('express-session');
+var CurrentUser = {};
+
 
 // supply a session 'secret' to hash the session (security measure)
 app.use(session({secret: "mySecret"}));
@@ -36,8 +38,15 @@ passport.use(new GoogleStrategy({
   function(accessToken, refreshToken, profile, cb) {
 			// console.log(accessToken);
 			cb(null, accessToken, profile, refreshToken);
-      console.log(profile.id);
-      console.log(profile.name.givenName);
+      // localStorage.setItem('given name', JSON.stringify(profile.name.given_name));
+      // localStorage.setItem('user id', JSON.stringify(profile.id));
+      var given_name = profile.name.givenName;
+      var user_id = profile.id;
+      CurrentUser["user_id"] = user_id;
+      CurrentUser["given_name"] = given_name;
+      app.get("/api/user", function(req,res){
+        res.json(CurrentUser);
+      });
   }
 ));
 
@@ -46,7 +55,7 @@ app.get('/', function(req, res) {
 })
 
 // Serve static content for the app from the “public” directory in the application directory.
-app.use(express.static(process.cwd() +'/public/'));
+app.use(express.static(process.cwd() + '/public/'));
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
@@ -61,15 +70,14 @@ app.get('/auth/google/callback', passport.authenticate('google', {
 // users who are succesfully authenticated will be redirected to the success route
 // notice that we pass in the custom 'isAuthenticated' middleware that we created below to check if the user hitting this route is authenticated 
 app.get('/success', isAuthenticated, function(req, res) {
-  // console.log(req.user);
 	res.sendFile(path.join(__dirname + '/views/success.html'));
-})
+});
 
 // users who are not succesfully authenticated will hit this route
 app.get('/fail', function(req, res) {
   // console.log(req.user); // check the console and you'll see that req.user is undefined
 	res.sendFile(path.join(__dirname + '/views/fail.html'));
-})
+});
 
 // passport lets us use the req.logout() method to end the current session
 // when the user is logged out they are redirected back to the homepage
@@ -84,17 +92,14 @@ function isAuthenticated(req, res, next) {
         return next();
     // if req.user does not exist redirect them to the fail page.  Here you can either redirect users back to the login page
     res.redirect('/fail');
-}
-
+};
 
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
-
 // var routes = require("./controllers");
 
 // app.use("/", routes);
-
 
 
 db.sequelize.sync({ force: true }).then(function() {
