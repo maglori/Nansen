@@ -11,51 +11,71 @@
 	<link href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.1/css/foundation.min.css" integrity="sha256-itWEYdFWzZPBG78bJOOiQIn06QCgN/F0wMDcC4nOhxY="
 	    crossorigin="anonymous" />
-	<link rel="stylesheet" href="/assets/css/app.css"/>
+	<link rel="stylesheet" href="/assets/css/app.css" />
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
 	    crossorigin="anonymous"></script>
 </head>
 
 <body>
-	<div class="top-bar-container" data-sticky-container>
+	<header class="sticky-shrinknav-header">
+		<h1 class="sticky-shrinknav-header-title">sticky-shrinknav</h1>
+		<ul class="menu align-center sticky-shrinknav-menu">
+			<li><a href="#">Home</a></li>
+			<li><a href="#">About</a></li>
+			<li><a href="#">Gallery</a></li>
+			<li><a href="#">Contact</a></li>
+		</ul>
+	</header>
+
+
+	<div id="push-div"></div>
+
+	<!--<div class="top-bar-container" data-sticky-container>
 		<div class="sticky sticky-topbar" data-sticky data-options="anchor: page; marginTop: 0; stickyOn: small;">
 			<div class="top-bar">
 				<div class="top-bar-left">
 					<ul class="dropdown menu" data-dropdown-menu>
 						<li class="menu-text">Nansen</li>
 						<li class="has-submenu">
-							<a href="/">Home</a>
-							<!--<ul class="submenu menu vertical" data-submenu>
+							<a href="/">Home</a>-->
+
+
+
+	<!--<ul class="submenu menu vertical" data-submenu>
               <li><a href="#">One</a></li>
               <li><a href="#">Two</a></li>
               <li><a href="#">Three</a></li>
             </ul>-->
-						</li>
+
+
+
+	<!--</li>
 						<li><a href="#">Passport</a></li>
 						<li><a href="/logout">Sign out</a></li>
 					</ul>
 				</div>
-				<div class="top-bar-right">
-					<ul class="menu">
+
+
+
+
+	<!--<ul class="menu">
 						<li><input type="search" placeholder="Search"></li>
 						<li><button type="button" class="button">Search</button></li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="holy-grail-left">
-		<h3>Nav</h3>
-		<ul>
-			<li><a href="#">Link 1</a></li>
-			<li><a href="#">Link 2</a></li>
-			<li><a href="#">Link 3</a></li>
-		</ul>
-	</div>
+					</ul>-->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.1/js/foundation.min.js" integrity="sha256-Nd2xznOkrE9HkrAMi4xWy/hXkQraXioBg9iYsBrcFrs="
 	    crossorigin="anonymous"></script>
 	<script>
 		$(document).foundation();
+		$(function () {
+			$(window).scroll(function () {
+				var winTop = $(window).scrollTop();
+				if (winTop >= 30) {
+					$("body").addClass("sticky-shrinknav-wrapper");
+				} else {
+					$("body").removeClass("sticky-shrinknav-wrapper");
+				}
+			});
+		});
 	</script>
 </body>
 
