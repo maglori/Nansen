@@ -76,10 +76,7 @@
 				}
 			});
 		});
-	</script>
-</body>
-
-    <script>
+	//Google Geolocator API	
     function initMap() {
         var geocoder = new google.maps.Geocoder;
 
@@ -95,9 +92,22 @@
           });
         };
     };
+
+	//AJAX for user info
+	// $.ajax(
+	// 	{
+	// 		type: "Get",
+	// 		url: "/api/user",
+	// 		success: function(response) {
+	// 			var data = response;
+	// 			console.log(data);
+	// 		}
+	// 	});
     </script>
     <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCflzUUCLlSmZfOcRuo12ZM10u42uSM160&callback=initMap">
     </script>
 
+
+</body>
 </html>

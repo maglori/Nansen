@@ -2,7 +2,7 @@
  
 const yelp = require('yelp-fusion');
 
-function YelpAPI() {
+function YelpAPI(term, location) {
     const clientId = "vtImstqahtr-cAxLRgO2VA";
     const clientSecret = "GW3NGtUhEqyzpvPHDp5grOs7NylzQtryzo8nBzv0GfPIEw3riktpXTLNT02KDQpK";
     var token;
@@ -12,9 +12,9 @@ function YelpAPI() {
         
             client.search({
                 term: term,
-                location: location
+                location: location,
             }).then(response => {
-                console.log(response.jsonBody.businesses[0].name);
+                console.log(response.jsonBody.businesses[0]);
             }).catch(e => {
                 console.log(e);
             });
