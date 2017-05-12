@@ -46,10 +46,6 @@
                         </ul>
                     </div>
                     <div class="top-bar-right">
-                        <!--<ul class="menu">
-                        <li><input type="search" placeholder="Search"></li>
-                        <li><button type="button" id="search-button" class="button">Search</button></li>
-                    </ul>-->
                         <div>
                             <header id="success-search">
                                 <div>
@@ -75,19 +71,21 @@
                     <hr>
                 </p>
             </div>
-                <div class="top-bar-right">
-                    <!--<form action="/api/yelp" method="post">-->
+                <!--<div class="top-bar-right">
                         <ul class="menu">
                             <li><input type="search" id="search" name="search" placeholder="Search"></li>
                             <li><button type="submit" id="search-button" class="button">Search</button></li>
                         </ul>
-                    <!--</form>-->
                 </div>
             </div>
-        </div>
+        </div>-->
+            <div id="right-div" class="large-7 columns">
+                <p>Local Attractions
+                    <hr>
+                </p>
+            </div>
     </div>
     <div class="container"></div>
-
     <div class="reveal" id="new_Modal_1" data-reveal>
     <button id="modal_button"> THIS IS A BUTTON </button>
     <button class="close-button" data-close aria-label="Close modal" type="button">
@@ -95,14 +93,7 @@
     </button>
     </div>
 
-            <div id="right-div" class="large-7 columns">
-                <p>Local Attractions
-                    <hr>
-                </p>
-            </div>
-        </div>
 
-        <div id="push-div"></div>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.1/js/foundation.min.js" integrity="sha256-Nd2xznOkrE9HkrAMi4xWy/hXkQraXioBg9iYsBrcFrs=" crossorigin="anonymous"></script>
 	<script>
 		$(document).foundation();
@@ -120,10 +111,11 @@
    
     // Yelp Search Code Follows
     // But it doesn't work XD
-    var search = $("#search");
+    var search = $("#findtext");
     var searchButton = $("#search-button");
     searchButton.on("click", function(){
     var queryTerms = {"data": search.val().trim()};
+    search.empty();
         event.preventDefault();
         $.ajax({
             type: "POST",
