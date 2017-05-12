@@ -11,7 +11,6 @@ var path = require('path');
 var session = require('express-session');
 var CurrentUser = {};
 
-
 // supply a session 'secret' to hash the session (security measure)
 app.use(session({secret: "mySecret"}));
 // initialize the passport middleware
@@ -38,6 +37,8 @@ passport.use(new GoogleStrategy({
   function(accessToken, refreshToken, profile, cb) {
 			// console.log(accessToken);
 			cb(null, accessToken, profile, refreshToken);
+      var routes = require("./controllers/Nansen_controller.js");
+      app.use("/", routes);
       // localStorage.setItem('given name', JSON.stringify(profile.name.given_name));
       // localStorage.setItem('user id', JSON.stringify(profile.id));
       var given_name = profile.name.givenName;
@@ -49,6 +50,10 @@ passport.use(new GoogleStrategy({
       });
   }
 ));
+
+// app.post("/api/yelp", function(req, res){
+  
+// });
 
 app.get('/', function(req, res) {
   res.sendFile(path.join(__dirname + '/views/index.html'));
@@ -96,11 +101,6 @@ function isAuthenticated(req, res, next) {
 
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
-
-// var routes = require("./controllers");
-
-// app.use("/", routes);
-
 
 db.sequelize.sync({ force: true }).then(function() {
   app.listen(3000, function() {
