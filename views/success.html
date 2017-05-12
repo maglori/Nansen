@@ -75,6 +75,25 @@
                     <hr>
                 </p>
             </div>
+                <div class="top-bar-right">
+                    <!--<form action="/api/yelp" method="post">-->
+                        <ul class="menu">
+                            <li><input type="search" id="search" name="search" placeholder="Search"></li>
+                            <li><button type="submit" id="search-button" class="button">Search</button></li>
+                        </ul>
+                    <!--</form>-->
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container"></div>
+
+    <div class="reveal" id="new_Modal_1" data-reveal>
+    <button id="modal_button"> THIS IS A BUTTON </button>
+    <button class="close-button" data-close aria-label="Close modal" type="button">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    </div>
 
             <div id="right-div" class="large-7 columns">
                 <p>Local Attractions
@@ -84,45 +103,79 @@
         </div>
 
         <div id="push-div"></div>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.1/js/foundation.min.js" integrity="sha256-Nd2xznOkrE9HkrAMi4xWy/hXkQraXioBg9iYsBrcFrs=" crossorigin="anonymous"></script>
+	<script>
+		$(document).foundation();
+		$(function () {
+			$(window).scroll(function () {
+				var winTop = $(window).scrollTop();
+				if (winTop >= 30) {
+					$("body").addClass("sticky-shrinknav-wrapper");
+				} else {
+					$("body").removeClass("sticky-shrinknav-wrapper");
+				}
+			});
+		});
 
-        <!--<div class="top-bar-container" data-sticky-container>
-		<div class="sticky sticky-topbar" data-sticky data-options="anchor: page; marginTop: 0; stickyOn: small;">
-			<div class="top-bar">
-				<div class="top-bar-left">
-					<ul class="dropdown menu" data-dropdown-menu>
-						<li class="menu-text">Nansen</li>
-						<li class="has-submenu">
-							<a href="/">Home</a>-->
-
-        <!--<ul class="submenu menu vertical" data-submenu>
-              <li><a href="#">One</a></li>
-              <li><a href="#">Two</a></li>
-              <li><a href="#">Three</a></li>
-            </ul>-->
-        <!--</li>
-						<li><a href="#">Passport</a></li>
-						<li><a href="/logout">Sign out</a></li>
-					</ul>
-				</div>
-	<!--<ul class="menu">
-						<li><input type="search" placeholder="Search"></li>
-						<li><button type="button" class="button">Search</button></li>
-					</ul>-->
-    </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.1/js/foundation.min.js" integrity="sha256-Nd2xznOkrE9HkrAMi4xWy/hXkQraXioBg9iYsBrcFrs=" crossorigin="anonymous"></script>
-    <script>
-        $(document).foundation();
-        $(function() {
-            $(window).scroll(function() {
-                var winTop = $(window).scrollTop();
-                if (winTop >= 30) {
-                    $("body").addClass("sticky-shrinknav-wrapper");
-                } else {
-                    $("body").removeClass("sticky-shrinknav-wrapper");
-                }
+   
+    // Yelp Search Code Follows
+    // But it doesn't work XD
+    var search = $("#search");
+    var searchButton = $("#search-button");
+    searchButton.on("click", function(){
+    var queryTerms = {"data": search.val().trim()};
+        event.preventDefault();
+        $.ajax({
+            type: "POST",
+            url: "/api/yelp",
+            data: queryTerms,
+        }).done(function(){
+            $.ajax({
+                type: "GET",
+                url: "/api/yelp/data",
+                success: function(data){
+                    console.log(data)
+                },
             });
         });
+    });
+
+    // $(function(){
+
+    //     $('#new_Modal_1').foundation('open');
+    // });
+
+    //  Google Geolocator API data
+        function initMap() {
+            var geocoder = new google.maps.Geocoder;
+
+            if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+                var pos = {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude
+                };
+                geocoder.geocode({'location': pos}, function(results, status) {
+                    console.log(results)
+                });
+            });
+            };
+        };
+
+    	//AJAX for user info
+    	$.ajax(
+    		{
+    			type: "GET",
+    			url: "/api/user",
+    			success: function(response) {
+    				var data = response;
+    				console.log(data);
+    			}
+    		})
+    </script>
+  
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCflzUUCLlSmZfOcRuo12ZM10u42uSM160&callback=initMap">
     </script>
 </body>
-
 </html>
