@@ -93,20 +93,31 @@
 
     //  Google Geolocator API data
         function initMap() {
-        var geocoder = new google.maps.Geocoder;
+            var geocoder = new google.maps.Geocoder;
 
-        if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(function(position) {
-            var pos = {
-              lat: position.coords.latitude,
-              lng: position.coords.longitude
-            };
-            geocoder.geocode({'location': pos}, function(results, status) {
-                console.log(results)
+            if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+                var pos = {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude
+                };
+                geocoder.geocode({'location': pos}, function(results, status) {
+                    console.log(results)
+                });
             });
-          });
+            };
         };
-    };
+
+    	//AJAX for user info
+    	$.ajax(
+    		{
+    			type: "Get",
+    			url: "/api/user",
+    			success: function(response) {
+    				var data = response;
+    				console.log(data);
+    			}
+    		});
 
     </script>
   
