@@ -7,9 +7,11 @@ var router = express.Router();
 router.post("/api/yelp", function(req, res) {
     var query = JSON.stringify(req.body.data);
     yelp(null, query, 5, function(data){
-        route.get("/api/yelp/data", function(req, res){
+        console.log(data);
+        router.get("/api/yelp/data", function(req, res){
             res.json(data);
         });
+        res.end();
     });
 });
 

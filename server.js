@@ -51,10 +51,6 @@ passport.use(new GoogleStrategy({
   }
 ));
 
-// app.post("/api/yelp", function(req, res){
-  
-// });
-
 app.get('/', function(req, res) {
   res.sendFile(path.join(__dirname + '/views/index.html'));
 })
