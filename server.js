@@ -39,14 +39,13 @@ passport.use(new GoogleStrategy({
 			cb(null, accessToken, profile, refreshToken);
       var routes = require("./controllers/Nansen_controller.js");
       app.use("/", routes);
-      // localStorage.setItem('given name', JSON.stringify(profile.name.given_name));
-      // localStorage.setItem('user id', JSON.stringify(profile.id));
       var given_name = profile.name.givenName;
       var user_id = profile.id;
       CurrentUser["user_id"] = user_id;
       CurrentUser["given_name"] = given_name;
       app.get("/api/user", function(req,res){
         res.json(CurrentUser);
+        res.end()
       });
   }
 ));

@@ -1,11 +1,11 @@
 module.exports = function(sequelize, DataTypes) {
     var Itinerary = sequelize.define('Itinerary', {
-        user_id: {
+        UID: {
             type: DataTypes.INTEGER,
             notNull: true,
             notEmpty: true,
         },
-        user_name: {
+        Username: {
             type: DataTypes.STRING,
             notNull: true,
             notEmpty: true,

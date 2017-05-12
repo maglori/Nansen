@@ -15,4 +15,35 @@ router.post("/api/yelp", function(req, res) {
     });
 });
 
+router.post("/api/user", function(req, res){
+    var user_data = req.body;
+    var UID = user_data.user_id;
+    var Username = user_data.given_name;
+
+//     router.get("/success" function(req, res) {
+//         db.Itinerary.findAll({
+//             where: {
+//                 UID: UID,
+//             },
+//             include: [db.Stamps],
+//         }).then(function(data) {
+//             console.log(data);
+//         };
+// });
+});
+
+
+router.post("/user/searches" , function (req, res) {
+
+    console.log(req.body);
+
+    var firstSearch = req.body.First;
+    var secondSearch =  req.body.Second;
+    var thirdSearch = req.body.Third;
+    var fourthSearch = req.body.Fourth;
+    var fifthSearch = req.body.Fifth;
+
+    res.end();
+
+});
 module.exports = router;
