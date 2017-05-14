@@ -85,23 +85,33 @@
 
             <div id="box1">
                 <input class="checkbox1" type="checkbox" name="location1">
+                <br>
+                <div id="display1"></div>
+                <div id="displayname1"></div>
             </div>
-            <br>
             <div id="box2">
                 <input class="checkbox2" type="checkbox" name="location2">
                 <br>
+                <div id="display2"></div>
+                <div id="displayname2"></div>
             </div>
             <div id="box3">
                 <input class="checkbox3" type="checkbox" name="location3">
                 <br>
+                <div id="display3"></div>
+                <div id="displayname3"></div>
             </div>
             <div id="box4">
                 <input class="checkbox4" type="checkbox" name="location4">
                 <br>
+                <div id="display4"></div>
+                <div id="displayname4"></div>
             </div>
             <div id="box5">
                 <input class="checkbox5" type="checkbox" name="location5">
                 <br>
+                <div id="display5"></div>
+                <div id="displayname5"></div>
             </div>
 
             <button class="submit-yelps">Nansen!</button>
@@ -116,17 +126,6 @@
             crossorigin="anonymous"></script>
         <script>
             $(document).foundation();
-            $(function () {
-                $(window).scroll(function () {
-                    var winTop = $(window).scrollTop();
-                    if (winTop >= 30) {
-                        $("body").addClass("sticky-shrinknav-wrapper");
-                    } else {
-                        $("body").removeClass("sticky-shrinknav-wrapper");
-                    }
-                });
-            });
-
 
             // Yelp Search Code Follows
             // But it doesn't work XD
@@ -143,62 +142,63 @@
                     type: "POST",
                     url: "/api/yelp",
                     data: queryTerms,
-                }).done(function () {
-                    $.ajax({
-                        type: "GET",
-                        url: "/api/yelp/data",
-                        success: function (data) {
-                            var yelps = data;
+                    success: function (data) {
+                        var yelps = data;
 
-                            var name1 = yelps[0].name;
-                            var name2 = yelps[1].name;
-                            var name3 = yelps[2].name;
-                            var name4 = yelps[3].name;
-                            var name5 = yelps[4].name;
+                        var name1 = yelps[0].name;
+                        var name2 = yelps[1].name;
+                        var name3 = yelps[2].name;
+                        var name4 = yelps[3].name;
+                        var name5 = yelps[4].name;
 
-                            var image1 = yelps[0].image_url;
+                        var image1 = yelps[0].image_url;
 
-                            $(".checkbox1").prop("value", name1);
-                            $(".checkbox2").prop("value", name2);
-                            $(".checkbox3").prop("value", name3);
-                            $(".checkbox4").prop("value", name4);
-                            $(".checkbox5").prop("value", name5);
+                        $(".checkbox1").prop("value", name1);
+                        $(".checkbox2").prop("value", name2);
+                        $(".checkbox3").prop("value", name3);
+                        $(".checkbox4").prop("value", name4);
+                        $(".checkbox5").prop("value", name5);
 
-                            var image1 = $("<img>");
-                            var image2 = $("<img>");
-                            var image3 = $("<img>");
-                            var image4 = $("<img>");
-                            var image5 = $("<img>");
+                        var image1 = $("<img>");
+                        var image2 = $("<img>");
+                        var image3 = $("<img>");
+                        var image4 = $("<img>");
+                        var image5 = $("<img>");
 
-                            image1.css({
-                                "height": "60vh"
-                            });
-                            image2.css({
-                                "height": "60vh"
-                            });
-                            image3.css({
-                                "height": "60vh"
-                            });
-                            image4.css({
-                                "height": "60vh"
-                            });
-                            image5.css({
-                                "height": "60vh"
-                            });
+                        image1.css({
+                            "height": "60vh"
+                        });
+                        image2.css({
+                            "height": "60vh"
+                        });
+                        image3.css({
+                            "height": "60vh"
+                        });
+                        image4.css({
+                            "height": "60vh"
+                        });
+                        image5.css({
+                            "height": "60vh"
+                        });
 
-                            image1.attr("src", yelps[0].image_url).appendTo(("#box1"));
-                            image2.attr("src", yelps[1].image_url).appendTo(("#box2"));
-                            image3.attr("src", yelps[2].image_url).appendTo(("#box3"));
-                            image4.attr("src", yelps[3].image_url).appendTo(("#box4"));
-                            image5.attr("src", yelps[4].image_url).appendTo(("#box5"));
+                        image1.attr("src", yelps[0].image_url);
+                        image2.attr("src", yelps[1].image_url);
+                        image3.attr("src", yelps[2].image_url);
+                        image4.attr("src", yelps[3].image_url);
+                        image5.attr("src", yelps[4].image_url);
 
-                            $("#box1").append(name1);
-                            $("#box2").append(name2);
-                            $("#box3").append(name3);
-                            $("#box4").append(name4);
-                            $("#box5").append(name5);
-                        },
-                    });
+                        $("#display1").html(image1);
+                        $("#display2").html(image2);
+                        $("#display3").html(image3);
+                        $("#display4").html(image4);
+                        $("#display5").html(image5);
+
+                        $("#displayname1").html(name1);
+                        $("#displayname2").html(name2);
+                        $("#displayname3").html(name3);
+                        $("#displayname4").html(name4);
+                        $("#displayname5").html(name5);
+                    }
                 });
             });
 
