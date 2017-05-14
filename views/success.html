@@ -84,36 +84,51 @@
         <div class="container"></div>
         <div class="reveal" id="new_Modal_1" data-reveal>
 
-            <div id="box1">
-                <input class="yelp-selection checkbox1" type="checkbox" name="location1">
+            <div class="check" id="box1">
+                <input class="yelp-selection checkbox1" type="checkbox" name="location1"> 
                 <br>
-                <div id="display1"></div>
+                <div id="display1"></div> &nbsp &nbsp &nbsp
                 <div id="displayname1"></div>
             </div>
-            <div id="box2">
+            
+            <br> <br> <br>
+            
+            <div class="check" id="box2">
                 <input class="yelp-selection checkbox2" type="checkbox" name="location2">
                 <br>
-                <div id="display2"></div>
+                <div id="display2"></div> &nbsp &nbsp &nbsp
                 <div id="displayname2"></div>
             </div>
-            <div id="box3">
+             
+             <br> <br> <br>
+
+            <div class="check" id="box3">
                 <input class="yelp-selection checkbox3" type="checkbox" name="location3">
                 <br>
-                <div id="display3"></div>
+                <div id="display3"></div> &nbsp &nbsp &nbsp
                 <div id="displayname3"></div>
             </div>
-            <div id="box4">
+             
+             <br> <br> <br>
+
+            <div class="check" id="box4">
                 <input class="yelp-selection checkbox4" type="checkbox" name="location4">
                 <br>
-                <div id="display4"></div>
+                <div id="display4"></div> &nbsp &nbsp &nbsp
                 <div id="displayname4"></div>
             </div>
-            <div id="box5">
+             
+             <br> <br> <br>
+
+            <div class='check' id="box5">
                 <input class="yelp-selection checkbox5" type="checkbox" name="location5">
                 <br>
-                <div id="display5"></div>
+                <div id="display5"></div> &nbsp &nbsp
                 <div id="displayname5"></div>
             </div>
+            
+             <br> <br> <br>
+            
             <button id="submit-yelps">Nansen!</button>
             <button id="modal-close-button" class="close-button" data-close aria-label="Close modal" type="button">
         <span aria-hidden="true">&times;</span>
@@ -147,12 +162,14 @@
             var search = $("#findtext");
             var searchButton = $("#search-button");
             searchButton.on("click", function () {
+               
                 var queryTerms = {
                     "data": search.val().trim()
                 };
+                $('#findtext').val("");
                 event.preventDefault();
                 $("#new_Modal_1").foundation("open");
-                search.val().empty;
+               
                 $.ajax({
                     type: "POST",
                     url: "/api/yelp",
@@ -219,11 +236,16 @@
 
             // Sending selections back to server
 
-            $("#submit-yelps").on("click", function () {
+                $("#submit-yelps").on("click", function () {
                 var selected = [];
+
+                
+            
                 $('.yelp-selection:input:checked').each(function () {
                     console.log(this);
-                    if ($(this).val()) selected.push($(this).val());
+                   if ($(this).val()) selected.push($(this).val());     
+
+                   $('.yelp-selection').prop('checked' , false); 
 
                 });
                 console.log("submit yelps %j", selected);
