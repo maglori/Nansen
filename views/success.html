@@ -64,9 +64,11 @@
     <meta name="author">
     <!-- Style Sheets -->
     <link href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.1/css/foundation.min.css" integrity="sha256-itWEYdFWzZPBG78bJOOiQIn06QCgN/F0wMDcC4nOhxY=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.1/css/foundation.min.css" integrity="sha256-itWEYdFWzZPBG78bJOOiQIn06QCgN/F0wMDcC4nOhxY="
+        crossorigin="anonymous" />
     <link rel="stylesheet" href="/assets/css/app.css" />
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous"></script>
 </head>
 
 <ul class="slideshow">
@@ -116,202 +118,213 @@
             </div>
         </div>
         <div class="row">
+            <div id="information-div" class="medium-12 columns">
+                <p>Here is information about the app.</p>
+            </div>
+        </div>
+        <div class="row">
             <div id="passport-div" class="large-4 columns">
                 <p>Passport Stamps
                     <hr>
                 </p>
             </div>
-                <!--<div class="top-bar-right">
-                        <ul class="menu">
-                            <li><input type="search" id="search" name="search" placeholder="Search"></li>
-                            <li><button type="submit" id="search-button" class="button">Search</button></li>
-                        </ul>
-                </div>
-            </div>
-        </div>-->
             <div id="right-div" class="large-7 columns">
                 <p>Local Attractions
                     <hr>
                 </p>
             </div>
-    </div>
-    <!--Modal-->
-    <div class="container"></div>
-    <div class="reveal" id="new_Modal_1" data-reveal>
+        </div>
+        <!--Modal-->
+        <div class="container"></div>
+        <div class="reveal" id="new_Modal_1" data-reveal>
 
-            <div id="box1" >
-            <input class="checkbox1" type="checkbox" name="location1"> 
+            <div id="box1">
+                <input class="checkbox1" type="checkbox" name="location1">
+                <br>
+                <div id="display1"></div>
+                <div id="displayname1"></div>
             </div>
-            <br>
-            <div id="box2" >
-            <input class="checkbox2" type="checkbox" name="location2"> 
-            <br>
+            <div id="box2">
+                <input class="checkbox2" type="checkbox" name="location2">
+                <br>
+                <div id="display2"></div>
+                <div id="displayname2"></div>
             </div>
             <div id="box3">
-            <input class="checkbox3" type="checkbox" name="location3"> 
-            <br>
+                <input class="checkbox3" type="checkbox" name="location3">
+                <br>
+                <div id="display3"></div>
+                <div id="displayname3"></div>
             </div>
             <div id="box4">
-             <input class="checkbox4" type="checkbox" name="location4"> 
-            <br>
+                <input class="checkbox4" type="checkbox" name="location4">
+                <br>
+                <div id="display4"></div>
+                <div id="displayname4"></div>
             </div>
-            <div id="box5" >
-             <input class="checkbox5" type="checkbox" name="location5"> 
-            <br>
+            <div id="box5">
+                <input class="checkbox5" type="checkbox" name="location5">
+                <br>
+                <div id="display5"></div>
+                <div id="displayname5"></div>
             </div>
-            
+
             <button class="submit-yelps">Nansen!</button>
 
 
-    <button class="close-button" data-close aria-label="Close modal" type="button">
+            <button class="close-button" data-close aria-label="Close modal" type="button">
         <span aria-hidden="true">&times;</span>
     </button>
-    </div>
+        </div>
 
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.1/js/foundation.min.js" integrity="sha256-Nd2xznOkrE9HkrAMi4xWy/hXkQraXioBg9iYsBrcFrs=" crossorigin="anonymous"></script>
-	<script>
-		$(document).foundation();
-		$(function () {
-			$(window).scroll(function () {
-				var winTop = $(window).scrollTop();
-				if (winTop >= 30) {
-					$("body").addClass("sticky-shrinknav-wrapper");
-				} else {
-					$("body").removeClass("sticky-shrinknav-wrapper");
-				}
-			});
-		});
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.1/js/foundation.min.js" integrity="sha256-Nd2xznOkrE9HkrAMi4xWy/hXkQraXioBg9iYsBrcFrs="
+            crossorigin="anonymous"></script>
+        <script>
+            $(document).foundation();
 
-   
-    // Yelp Search Code Follows
-    // But it doesn't work XD
-    var search = $("#findtext");
-    var searchButton = $("#search-button");
-    searchButton.on("click", function(){
-    var queryTerms = {"data": search.val().trim()};
-        event.preventDefault();
-        $("#new_Modal_1").foundation("open");
-        search.val().empty;
-        $.ajax({
-            type: "POST",
-            url: "/api/yelp",
-            data: queryTerms,
-        }).done(function(){
-            $.ajax({
-                type: "GET",
-                url: "/api/yelp/data",
-                success: function(data){
-                    var yelps = data;
-
-                    var name1=  yelps[0].name;
-                    var name2=  yelps[1].name;
-                    var name3=  yelps[2].name;
-                    var name4=  yelps[3].name;         
-                    var name5=  yelps[4].name;
-                    
-                    var image1 = yelps[0].image_url;
-
-                    $(".checkbox1").prop("value", name1);
-                    $(".checkbox2").prop("value", name2);
-                    $(".checkbox3").prop("value", name3);
-                    $(".checkbox4").prop("value", name4);
-                    $(".checkbox5").prop("value", name5);
-
-                    var image1 = $("<img>");
-                    var image2 = $("<img>");
-                    var image3 = $("<img>");
-                    var image4 = $("<img>");
-                    var image5 = $("<img>");
-                    
-                    image1.css({"height": "60vh"});
-                    image2.css({"height": "60vh"});
-                    image3.css({"height": "60vh"});
-                    image4.css({"height": "60vh"});
-                    image5.css({"height": "60vh"});
-
-                    image1.attr("src" , yelps[0].image_url).appendTo(("#box1"));
-                    image2.attr("src" , yelps[1].image_url).appendTo(("#box2"));
-                    image3.attr("src" , yelps[2].image_url).appendTo(("#box3"));
-                    image4.attr("src" , yelps[3].image_url).appendTo(("#box4"));
-                    image5.attr("src" , yelps[4].image_url).appendTo(("#box5"));
-                    
-                    $("#box1").append(name1);
-                    $("#box2").append(name2);
-                    $("#box3").append(name3);
-                    $("#box4").append(name4);
-                    $("#box5").append(name5);
-                },
-            });
-        });
-    });
-
-// Sending selections back to server
-
-$(".submit-yelps").on("click" , function () {
-
-        var location1 = $(':input[name="location1"]:checked').val();
-        
-        var location2 = $(':input[name="location2"]:checked').val();   
-        
-        var location3 = $(':input[name="location3"]:checked').val(); 
-        
-        var location4 = $(':input[name="location4"]:checked').val();  
-        
-        var location5 = $(':input[name="location5"]:checked').val();     
-
-
-
-        $.ajax({
-                type: "post",
-                url: "/user/searches/",
-                data: {
-                    First: location1,
-                    Second: location2,
-                    Third: location3,
-                    Fourth: location4,
-                    Fifth: location5,
-                },
-                success: function(result) {
-                    alert("successful!");
-                }
-            });
-});
-    //  Google Geolocator API data
-        function initMap() {
-            var geocoder = new google.maps.Geocoder;
-
-            if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(function(position) {
-                var pos = {
-                lat: position.coords.latitude,
-                lng: position.coords.longitude
+            // Yelp Search Code Follows
+            // But it doesn't work XD
+            var search = $("#findtext");
+            var searchButton = $("#search-button");
+            searchButton.on("click", function () {
+                var queryTerms = {
+                    "data": search.val().trim()
                 };
-                geocoder.geocode({'location': pos}, function(results, status) {
-                    console.log(results)
+                event.preventDefault();
+                $("#new_Modal_1").foundation("open");
+                search.val().empty;
+                $.ajax({
+                    type: "POST",
+                    url: "/api/yelp",
+                    data: queryTerms,
+                    success: function (data) {
+                        var yelps = data;
+
+                        var name1 = yelps[0].name;
+                        var name2 = yelps[1].name;
+                        var name3 = yelps[2].name;
+                        var name4 = yelps[3].name;
+                        var name5 = yelps[4].name;
+
+                        var image1 = yelps[0].image_url;
+
+                        $(".checkbox1").prop("value", name1);
+                        $(".checkbox2").prop("value", name2);
+                        $(".checkbox3").prop("value", name3);
+                        $(".checkbox4").prop("value", name4);
+                        $(".checkbox5").prop("value", name5);
+
+                        var image1 = $("<img>");
+                        var image2 = $("<img>");
+                        var image3 = $("<img>");
+                        var image4 = $("<img>");
+                        var image5 = $("<img>");
+
+                        image1.css({
+                            "height": "60vh"
+                        });
+                        image2.css({
+                            "height": "60vh"
+                        });
+                        image3.css({
+                            "height": "60vh"
+                        });
+                        image4.css({
+                            "height": "60vh"
+                        });
+                        image5.css({
+                            "height": "60vh"
+                        });
+
+                        image1.attr("src", yelps[0].image_url);
+                        image2.attr("src", yelps[1].image_url);
+                        image3.attr("src", yelps[2].image_url);
+                        image4.attr("src", yelps[3].image_url);
+                        image5.attr("src", yelps[4].image_url);
+
+                        $("#display1").html(image1);
+                        $("#display2").html(image2);
+                        $("#display3").html(image3);
+                        $("#display4").html(image4);
+                        $("#display5").html(image5);
+
+                        $("#displayname1").html(name1);
+                        $("#displayname2").html(name2);
+                        $("#displayname3").html(name3);
+                        $("#displayname4").html(name4);
+                        $("#displayname5").html(name5);
+                    }
                 });
             });
+
+            // Sending selections back to server
+
+            $(".submit-yelps").on("click", function () {
+
+                var location1 = $(':input[name="location1"]:checked').val();
+
+                var location2 = $(':input[name="location2"]:checked').val();
+
+                var location3 = $(':input[name="location3"]:checked').val();
+
+                var location4 = $(':input[name="location4"]:checked').val();
+
+                var location5 = $(':input[name="location5"]:checked').val();
+
+
+
+                $.ajax({
+                    type: "post",
+                    url: "/user/searches/",
+                    data: {
+                        First: location1,
+                        Second: location2,
+                        Third: location3,
+                        Fourth: location4,
+                        Fifth: location5,
+                    },
+                    success: function (result) {
+                        alert("successful!");
+                    }
+                });
+            });
+            //  Google Geolocator API data
+            function initMap() {
+                var geocoder = new google.maps.Geocoder;
+
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(function (position) {
+                        var pos = {
+                            lat: position.coords.latitude,
+                            lng: position.coords.longitude
+                        };
+                        geocoder.geocode({
+                            'location': pos
+                        }, function (results, status) {
+                            console.log(results)
+                        });
+                    });
+                };
             };
-        };
-    	// AJAX for user info
-    	$.ajax(
-    		{
-    			type: "GET",
-    			url: "/api/user",
-    			success: function(response) {
-    				var data = response;
-    				console.log(data);
-    			}
-    		}).done(function(data){
+            // AJAX for user info
+            $.ajax({
+                type: "GET",
+                url: "/api/user",
+                success: function (response) {
+                    var data = response;
+                    console.log(data);
+                }
+            }).done(function (data) {
                 $.ajax({
                     type: "POST",
                     url: "/api/user",
                     data: data,
                 });
             });
-    </script>
-  
-    <script async defer
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCflzUUCLlSmZfOcRuo12ZM10u42uSM160&callback=initMap">
-    </script>
+        </script>
+
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCflzUUCLlSmZfOcRuo12ZM10u42uSM160&callback=initMap">
+        </script>
 </body>
+
 </html>
