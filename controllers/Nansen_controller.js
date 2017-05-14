@@ -30,18 +30,33 @@ router.post("/api/user", function (req, res) {
     // });
 });
 
-
 router.post("/user/searches", function (req, res) {
 
     console.log(req.body);
-
-    var firstSearch = req.body.First;
-    var secondSearch = req.body.Second;
-    var thirdSearch = req.body.Third;
-    var fourthSearch = req.body.Fourth;
-    var fifthSearch = req.body.Fifth;
-
+    //    var results = [];
+    for (var i = 0; i < req.body["itineraryItem[]"].length; i++) {
+        db.Itinerary.create({
+            itinerary_Item: req.body["itineraryItem[]"][i],
+            UID: req.user
+        }).then(function (itinerary) {
+            console.log("database return successful: itinerary=%j", itinerary);
+            // res.send(); // TODO need to handle async nature. (change create to batch create)
+        });
+    }
     res.end();
-
 });
+
+router.get("/user/searches", function (req, res) {
+    console.log(req.user);
+    db.Itinerary.findAll({
+        where: {
+            UID: req.user
+        }
+    }).then(function (itineraryArray) {
+        console.log(itineraryArray);
+        res.send(itineraryArray);
+        res.end();
+    });
+});
+
 module.exports = router;

@@ -9,7 +9,8 @@
     <meta name="author">
     <!-- Style Sheets -->
     <link href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.1/css/foundation.min.css" integrity="sha256-itWEYdFWzZPBG78bJOOiQIn06QCgN/F0wMDcC4nOhxY=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.1/css/foundation.min.css" integrity="sha256-itWEYdFWzZPBG78bJOOiQIn06QCgN/F0wMDcC4nOhxY="
+        crossorigin="anonymous" />
     <link rel="stylesheet" href="/assets/css/app.css" />
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
         crossorigin="anonymous"></script>
@@ -69,13 +70,14 @@
         <div class="row">
             <div id="passport-div" class="large-4 columns">
                 <p>Passport Stamps
-                    <hr>
                 </p>
+                <hr>
             </div>
             <div id="right-div" class="large-7 columns">
-                <p>Local Attractions
-                    <hr>
+                <p>Itinerary
                 </p>
+                <hr>
+                <div id="itinerary-div"></div>
             </div>
         </div>
         <!--Modal-->
@@ -83,40 +85,37 @@
         <div class="reveal" id="new_Modal_1" data-reveal>
 
             <div id="box1">
-                <input class="checkbox1" type="checkbox" name="location1">
+                <input class="yelp-selection checkbox1" type="checkbox" name="location1">
                 <br>
                 <div id="display1"></div>
                 <div id="displayname1"></div>
             </div>
             <div id="box2">
-                <input class="checkbox2" type="checkbox" name="location2">
+                <input class="yelp-selection checkbox2" type="checkbox" name="location2">
                 <br>
                 <div id="display2"></div>
                 <div id="displayname2"></div>
             </div>
             <div id="box3">
-                <input class="checkbox3" type="checkbox" name="location3">
+                <input class="yelp-selection checkbox3" type="checkbox" name="location3">
                 <br>
                 <div id="display3"></div>
                 <div id="displayname3"></div>
             </div>
             <div id="box4">
-                <input class="checkbox4" type="checkbox" name="location4">
+                <input class="yelp-selection checkbox4" type="checkbox" name="location4">
                 <br>
                 <div id="display4"></div>
                 <div id="displayname4"></div>
             </div>
             <div id="box5">
-                <input class="checkbox5" type="checkbox" name="location5">
+                <input class="yelp-selection checkbox5" type="checkbox" name="location5">
                 <br>
                 <div id="display5"></div>
                 <div id="displayname5"></div>
             </div>
-
             <button id="submit-yelps">Nansen!</button>
-
-
-            <button class="close-button" data-close aria-label="Close modal" type="button">
+            <button id="modal-close-button" class="close-button" data-close aria-label="Close modal" type="button">
         <span aria-hidden="true">&times;</span>
     </button>
         </div>
@@ -124,8 +123,25 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.1/js/foundation.min.js" integrity="sha256-Nd2xznOkrE9HkrAMi4xWy/hXkQraXioBg9iYsBrcFrs="
             crossorigin="anonymous"></script>
         <script>
+            function refreshItinerary() {
+                console.log("Refreshing itinerary");
+                $.ajax({
+                    type: "GET",
+                    url: "/user/searches",
+                    success: function (data) {
+                        console.log("Got back searches:%j", data);
+                        var itineraryDiv = $("<div></div>");
+                        for (var i = 0; i < data.length; i++) {
+                            itineraryDiv.append($("<p></p>").text(data[i].itinerary_Item));
+                        }
+                        $("#itinerary-div").html(itineraryDiv);
+                    }
+                });
+            }
             $(document).foundation();
-
+            $(document).ready(function () {
+                refreshItinerary();
+            });
             // Yelp Search Code Follows
             // But it doesn't work XD
             var search = $("#findtext");
@@ -204,31 +220,24 @@
             // Sending selections back to server
 
             $("#submit-yelps").on("click", function () {
+                var selected = [];
+                $('.yelp-selection:input:checked').each(function () {
+                    console.log(this);
+                    if ($(this).val()) selected.push($(this).val());
 
-                var location1 = $(':input[name="location1"]:checked').val();
-
-                var location2 = $(':input[name="location2"]:checked').val();
-
-                var location3 = $(':input[name="location3"]:checked').val();
-
-                var location4 = $(':input[name="location4"]:checked').val();
-
-                var location5 = $(':input[name="location5"]:checked').val();
-
-
-
+                });
+                console.log("submit yelps %j", selected);
                 $.ajax({
                     type: "post",
                     url: "/user/searches/",
                     data: {
-                        First: location1,
-                        Second: location2,
-                        Third: location3,
-                        Fourth: location4,
-                        Fifth: location5,
+                        itineraryItem: selected,
+                        countryDest: ""
                     },
                     success: function (result) {
-                        alert("successful!");
+                        console.log("Finished saving user itinerary");
+                        refreshItinerary();
+                        $("#modal-close-button").click();
                     }
                 });
             });
@@ -245,7 +254,7 @@
                         geocoder.geocode({
                             'location': pos
                         }, function (results, status) {
-                            console.log(results)
+                            console.log(results);
                         });
                     });
                 };
