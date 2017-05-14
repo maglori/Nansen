@@ -588,6 +588,12 @@ p.info {
     text-align: center;
 }
 
+.check {
+
+    display: flex;
+    flex-direction: row;
+}
+
 #myModal {
     display: none;
     opacity: 1;
