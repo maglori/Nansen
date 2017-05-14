@@ -855,6 +855,8 @@ p.info {
 #nansen-logo {
     margin-top: 200px;
 }
+
+
 /*-------------------Index Search Bar----------------------*/
 
 #index-search {
@@ -908,21 +910,37 @@ p.info {
 /*------------------------success page divs-------------------------------*/
 
 #passport-div {
-    margin: 20px;
+    margin-top: 30px;
+    padding-top: 15px;
     background-color: white;
-    ;
     color: black;
     border-style: solid;
     border-width: 1.5px;
     border-color: #5d5d5d;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     text-align: center;
-    min-height: 40vw;
+    min-height: 30vw;
     font-weight: bold;
 }
 
 #right-div {
-    margin: 20px;
+    margin-top: 30px;
+    padding-top: 15px;
+    padding-left: 0.9375rem;
+    background-color: white;
+    color: black; 
+    border-style: solid;
+    border-width: 1.5px;
+    border-color: #5d5d5d;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    text-align: center;
+    min-height: 30vw;
+    font-weight: bold;
+}
+
+#information-div {
+    margin-top: 30px;
+    padding-top: 15px;
     background-color: white;
     color: black;
     border-style: solid;
@@ -930,6 +948,45 @@ p.info {
     border-color: #5d5d5d;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     text-align: center;
-    min-height: 40vw;
+    min-height: 10vw;
     font-weight: bold;
+}
+
+
+/*------------------------success page modal-------------------------------*/
+
+#new_Modal_1 {
+    -webkit-backface-visibility: ;
+    -moz-backface-visibility: ;
+    -ms-backface-visibility: ;
+    backface-visibility: ;
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
+    width: 80vw;
+    height: 85%;
+    left: 50%;
+    top: 50%;
+    padding: 10px, 10px, 10px, 10px;
+    margin-left: -600px;
+    margin-top: 50px;
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: #f2f2f2;
+    -webkit-backface-visibility: ;
+    -moz-backface-visibility: ;
+    -ms-backface-visibility: ;
+    backface-visibility: ;
+    outline: none;
+    border-radius: 5px;
+}
+
+#modal_button {
+    position: relative;
+    left: 88%;
+    bottom: 5%;
+    top: 60%;
 }
