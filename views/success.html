@@ -2,61 +2,6 @@
 <html lang="en">
 
 <head>
-	<title>success</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-	<meta name="description" />
-	<meta name="author">
-	<!-- Style Sheets -->
-	<link href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.1/css/foundation.min.css" integrity="sha256-itWEYdFWzZPBG78bJOOiQIn06QCgN/F0wMDcC4nOhxY="
-	    crossorigin="anonymous" />
-	<link rel="stylesheet" href="../public/assets/css/app.css" />
-	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-	    crossorigin="anonymous"></script>
-</head>
-
-<body>
-	<header class="sticky-shrinknav-header">
-		<h1 class="sticky-shrinknav-header-title">sticky-shrinknav</h1>
-		<ul class="menu align-center sticky-shrinknav-menu">
-			<li><a href="#">Home</a></li>
-			<li><a href="#">About</a></li>
-			<li><a href="#">Gallery</a></li>
-			<li><a href="#">Contact</a></li>
-		</ul>
-	</header>
-
-
-	<div id="push-div"></div>
-
-	<div class="reveal" id="new_Modal_1" data-reveal>
-  <button id="modal_button"> THIS IS A BUTTON </button>
-  <button class="close-button" data-close aria-label="Close modal" type="button">
-    <span aria-hidden="true">&times;</span>
-  </button>
-
-</div>
-
-<p><a data-open="new_Modal_1">Click me for a modal</a></p>
-
-	<!--<div class="top-bar-container" data-sticky-container>
-		<div class="sticky sticky-topbar" data-sticky data-options="anchor: page; marginTop: 0; stickyOn: small;">
-			<div class="top-bar">
-				<div class="top-bar-left">
-					<ul class="dropdown menu" data-dropdown-menu>
-						<li class="menu-text">Nansen</li>
-						<li class="has-submenu">
-							<a href="/">Home</a>-->
-
-
-
-	<!--<ul class="submenu menu vertical" data-submenu>
-              <li><a href="#">One</a></li>
-              <li><a href="#">Two</a></li>
-              <li><a href="#">Three</a></li>
-            </ul>-->
-  
     <title>success</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
@@ -64,8 +9,7 @@
     <meta name="author">
     <!-- Style Sheets -->
     <link href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.1/css/foundation.min.css" integrity="sha256-itWEYdFWzZPBG78bJOOiQIn06QCgN/F0wMDcC4nOhxY="
-        crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.1/css/foundation.min.css" integrity="sha256-itWEYdFWzZPBG78bJOOiQIn06QCgN/F0wMDcC4nOhxY=" crossorigin="anonymous" />
     <link rel="stylesheet" href="/assets/css/app.css" />
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
         crossorigin="anonymous"></script>
@@ -169,7 +113,7 @@
                 <div id="displayname5"></div>
             </div>
 
-            <button class="submit-yelps">Nansen!</button>
+            <button id="submit-yelps">Nansen!</button>
 
 
             <button class="close-button" data-close aria-label="Close modal" type="button">
@@ -259,7 +203,7 @@
 
             // Sending selections back to server
 
-            $(".submit-yelps").on("click", function () {
+            $("#submit-yelps").on("click", function () {
 
                 var location1 = $(':input[name="location1"]:checked').val();
 
