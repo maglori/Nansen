@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.1/css/foundation.min.css" integrity="sha256-itWEYdFWzZPBG78bJOOiQIn06QCgN/F0wMDcC4nOhxY="
         crossorigin="anonymous" />
     <link rel="stylesheet" href="/assets/css/app.css" />
+    <link rel="stylesheet" href="/assets/css/slideshow.css" />
+    <link rel="stylesheet" href="/assets/css/navbar.css" />
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
         crossorigin="anonymous"></script>
 </head>
@@ -64,17 +66,17 @@
         </div>
         <div class="row">
             <div id="information-div" class="medium-12 columns">
-                <p>Here is information about the app.</p>
+                <p>Nansen allows you to search for things in the area of your choosing, and stamp your passport when you visit new countries.</p>
             </div>
         </div>
         <div class="row">
             <div id="passport-div" class="large-4 columns">
-                <p>Passport Stamps
+                <p id="passport-header">Passport Stamps
                 </p>
                 <hr>
             </div>
             <div id="right-div" class="large-7 columns">
-                <p>Itinerary
+                <p id="itinerary-header">Itinerary
                 </p>
                 <hr>
                 <div id="itinerary-div"></div>
@@ -85,22 +87,22 @@
         <div class="reveal" id="new_Modal_1" data-reveal>
 
             <div class="check" id="box1">
-                <input class="yelp-selection checkbox1" type="checkbox" name="location1"> 
+                <input class="yelp-selection checkbox1" type="checkbox" name="location1">
                 <br>
                 <div id="display1"></div> &nbsp &nbsp &nbsp
                 <div id="displayname1"></div>
             </div>
-            
+
             <br> <br> <br>
-            
+
             <div class="check" id="box2">
                 <input class="yelp-selection checkbox2" type="checkbox" name="location2">
                 <br>
                 <div id="display2"></div> &nbsp &nbsp &nbsp
                 <div id="displayname2"></div>
             </div>
-             
-             <br> <br> <br>
+
+            <br> <br> <br>
 
             <div class="check" id="box3">
                 <input class="yelp-selection checkbox3" type="checkbox" name="location3">
@@ -108,8 +110,8 @@
                 <div id="display3"></div> &nbsp &nbsp &nbsp
                 <div id="displayname3"></div>
             </div>
-             
-             <br> <br> <br>
+
+            <br> <br> <br>
 
             <div class="check" id="box4">
                 <input class="yelp-selection checkbox4" type="checkbox" name="location4">
@@ -117,8 +119,8 @@
                 <div id="display4"></div> &nbsp &nbsp &nbsp
                 <div id="displayname4"></div>
             </div>
-             
-             <br> <br> <br>
+
+            <br> <br> <br>
 
             <div class='check' id="box5">
                 <input class="yelp-selection checkbox5" type="checkbox" name="location5">
@@ -126,178 +128,20 @@
                 <div id="display5"></div> &nbsp &nbsp
                 <div id="displayname5"></div>
             </div>
-            
-             <br> <br> <br>
-            
-            <button id="submit-yelps">Nansen!</button>
-            <button id="modal-close-button" class="close-button" data-close aria-label="Close modal" type="button">
-        <span aria-hidden="true">&times;</span>
-    </button>
-        </div>
 
+            <br> <br> <br>
+            <a id="submit-yelps" class="button expand">Add Items to Itinerary</a>
+            <!--<button id="submit-yelps">Add Items to Itinerary</button>-->
+            <button id="modal-close-button" class="close-button" data-close aria-label="Close modal" type="button">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.1/js/foundation.min.js" integrity="sha256-Nd2xznOkrE9HkrAMi4xWy/hXkQraXioBg9iYsBrcFrs="
             crossorigin="anonymous"></script>
         <script>
-            function refreshItinerary() {
-                console.log("Refreshing itinerary");
-                $.ajax({
-                    type: "GET",
-                    url: "/user/searches",
-                    success: function (data) {
-                        console.log("Got back searches:%j", data);
-                        var itineraryDiv = $("<div></div>");
-                        for (var i = 0; i < data.length; i++) {
-                            itineraryDiv.append($("<p></p>").text(data[i].itinerary_Item));
-                        }
-                        $("#itinerary-div").html(itineraryDiv);
-                    }
-                });
-            }
             $(document).foundation();
-            $(document).ready(function () {
-                refreshItinerary();
-            });
-            // Yelp Search Code Follows
-            // But it doesn't work XD
-            var search = $("#findtext");
-            var searchButton = $("#search-button");
-            searchButton.on("click", function () {
-               
-                var queryTerms = {
-                    "data": search.val().trim()
-                };
-                $('#findtext').val("");
-                event.preventDefault();
-                $("#new_Modal_1").foundation("open");
-               
-                $.ajax({
-                    type: "POST",
-                    url: "/api/yelp",
-                    data: queryTerms,
-                    success: function (data) {
-                        var yelps = data;
-
-                        var name1 = yelps[0].name;
-                        var name2 = yelps[1].name;
-                        var name3 = yelps[2].name;
-                        var name4 = yelps[3].name;
-                        var name5 = yelps[4].name;
-
-                        var image1 = yelps[0].image_url;
-
-                        $(".checkbox1").prop("value", name1);
-                        $(".checkbox2").prop("value", name2);
-                        $(".checkbox3").prop("value", name3);
-                        $(".checkbox4").prop("value", name4);
-                        $(".checkbox5").prop("value", name5);
-
-                        var image1 = $("<img>");
-                        var image2 = $("<img>");
-                        var image3 = $("<img>");
-                        var image4 = $("<img>");
-                        var image5 = $("<img>");
-
-                        image1.css({
-                            "height": "60vh"
-                        });
-                        image2.css({
-                            "height": "60vh"
-                        });
-                        image3.css({
-                            "height": "60vh"
-                        });
-                        image4.css({
-                            "height": "60vh"
-                        });
-                        image5.css({
-                            "height": "60vh"
-                        });
-
-                        image1.attr("src", yelps[0].image_url);
-                        image2.attr("src", yelps[1].image_url);
-                        image3.attr("src", yelps[2].image_url);
-                        image4.attr("src", yelps[3].image_url);
-                        image5.attr("src", yelps[4].image_url);
-
-                        $("#display1").html(image1);
-                        $("#display2").html(image2);
-                        $("#display3").html(image3);
-                        $("#display4").html(image4);
-                        $("#display5").html(image5);
-
-                        $("#displayname1").html(name1);
-                        $("#displayname2").html(name2);
-                        $("#displayname3").html(name3);
-                        $("#displayname4").html(name4);
-                        $("#displayname5").html(name5);
-                    }
-                });
-            });
-
-            // Sending selections back to server
-
-                $("#submit-yelps").on("click", function () {
-                var selected = [];
-
-                
-            
-                $('.yelp-selection:input:checked').each(function () {
-                    console.log(this);
-                   if ($(this).val()) selected.push($(this).val());     
-
-                   $('.yelp-selection').prop('checked' , false); 
-
-                });
-                console.log("submit yelps %j", selected);
-                $.ajax({
-                    type: "post",
-                    url: "/user/searches/",
-                    data: {
-                        itineraryItem: selected,
-                        countryDest: ""
-                    },
-                    success: function (result) {
-                        console.log("Finished saving user itinerary");
-                        refreshItinerary();
-                        $("#modal-close-button").click();
-                    }
-                });
-            });
-            //  Google Geolocator API data
-            function initMap() {
-                var geocoder = new google.maps.Geocoder;
-
-                if (navigator.geolocation) {
-                    navigator.geolocation.getCurrentPosition(function (position) {
-                        var pos = {
-                            lat: position.coords.latitude,
-                            lng: position.coords.longitude
-                        };
-                        geocoder.geocode({
-                            'location': pos
-                        }, function (results, status) {
-                            console.log(results);
-                        });
-                    });
-                };
-            };
-            // AJAX for user info
-            $.ajax({
-                type: "GET",
-                url: "/api/user",
-                success: function (response) {
-                    var data = response;
-                    console.log(data);
-                }
-            }).done(function (data) {
-                $.ajax({
-                    type: "POST",
-                    url: "/api/user",
-                    data: data,
-                });
-            });
         </script>
-
+        <script async src="/assets/js/app.js"></script>
         <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCflzUUCLlSmZfOcRuo12ZM10u42uSM160&callback=initMap">
         </script>
 </body>
