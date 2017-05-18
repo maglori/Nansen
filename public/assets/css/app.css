@@ -885,6 +885,15 @@ p.info {
    position: absolute;*/
 
 
+
+
+
+
+
+
+
+
+
 /*------------------------success page divs-------------------------------*/
 
 #passport-div {
@@ -900,6 +909,7 @@ p.info {
     min-height: 30vw;
     font-weight: bold;
 }
+
 
 #right-div {
     margin-top: 30px;
@@ -929,3 +939,12 @@ p.info {
     min-height: 10vw;
     font-weight: bold;
 }
+
+.geobutton {
+
+    background-color:rgb(15, 185, 219);
+
+    color:rgb(237, 239, 234);
+
+};
+
