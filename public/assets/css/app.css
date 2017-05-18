@@ -307,6 +307,22 @@ p.info {
 }
 
 
+#submit-yelps {
+
+
+	background-color: #00acc1;
+	color:white;
+	padding: 10px;
+
+}
+
+#submit-yelps:hover{
+
+
+	cursor: pointer;
+}
+
+
 /* Animation for the slideshow images */
 
 @-webkit-keyframes imageAnimation {
