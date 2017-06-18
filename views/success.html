@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>success</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="description" />
+    <meta name="author">
+    <!-- Style Sheets -->
+    <link href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.1/css/foundation.min.css" integrity="sha256-itWEYdFWzZPBG78bJOOiQIn06QCgN/F0wMDcC4nOhxY=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="/assets/css/app.css" />
+    <link rel="stylesheet" href="/assets/css/slideshow.css" />
+    <link rel="stylesheet" href="/assets/css/navbar.css" />
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+</head>
+
+<ul class="slideshow">
+    <li><span>Image 01</span>
+        <div></div>
+    </li>
+    <li><span>Image 02</span></li>
+    <li><span>Image 03</span></li>
+    <li><span>Image 04</span></li>
+    <li><span>Image 05</span></li>
+    <li><span>Image 06</span></li>
+</ul>
+
+<body>
+    <div class="container">
+        <div class="shadow top-bar-container" data-sticky-container>
+            <div class="sticky sticky-topbar" data-sticky data-options="anchor: page; marginTop: 0; stickyOn: small;">
+                <div class="top-bar">
+                    <div class="top-bar-left">
+                        <ul class="dropdown menu" data-dropdown-menu>
+                            <li class="menu-text"><img src="/assets/images/nansen-small.png"></li>
+                            <li class="has-submenu">
+                                <a href="/">Home</a>
+                            </li>
+                            <li><a href="#" id="geolocator">GeoLocation</a></li>
+                            <li><a href="/logout">Sign Out</a></li>
+                        </ul>
+                    </div>
+                    <div class="top-bar-right">
+                        <div>
+                            <header id="success-search">
+                                <div>
+                                    <form class="hero-search-filter-form" action="">
+                                        <label for="findtext">Location</label>
+                                        <input id="findtext" placeholder="Paris, France" class="hero-search-filter-form-find" type="text" />
+                                        <div class="divider">&nbsp;</div>
+                                        <label for="findlocate">Find</label>
+                                        <input id="findlocate" placeholder="Tourist Attractions" class="hero-search-filter-form-near" type="text" />
+                                        <button id="search-button" class="button"><i class="fa fa-search">Search</i></button>
+                                    </form>
+
+                                </div>
+                            </header>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div id="information-div" class="medium-12 columns">
+                <p>Nansen allows you to search for things in the area of your choosing, and stamp your passport when you visit new countries.</p><br>
+                <p>Use the search bar at the top of the screen in order to find things to do, and save the things you want to your itinerary.</p><br>
+                <p>Click the GeoLocation button in order to stamp your passport with your current location.</p>
+            </div>
+        </div>
+        <div class="row">
+            <div id="passport-div" class="large-4 columns">
+                <p id="passport-header">Passport Stamps
+                </p>
+                <hr>
+            </div>
+            <div id="right-div" class="large-7 columns">
+                <p id="itinerary-header">Itinerary
+                </p>
+                <hr>
+                <div id="itinerary-div"></div>
+            </div>
+        </div>
+        <!--Modal-->
+        <div class="container"></div>
+        <div class="reveal" id="new_Modal_1" data-reveal>
+            <div id="boxCountry"></div>
+            <div class="check" id="box1">
+                <input class="yelp-selection checkbox1" type="checkbox" name="location1">
+                <br>
+                <div id="display1"></div> &nbsp &nbsp &nbsp
+                <div id="displayname1"></div>
+            </div>
+
+            <br> <br> <br>
+
+            <div class="check" id="box2">
+                <input class="yelp-selection checkbox2" type="checkbox" name="location2">
+                <br>
+                <div id="display2"></div> &nbsp &nbsp &nbsp
+                <div id="displayname2"></div>
+            </div>
+
+            <br> <br> <br>
+
+            <div class="check" id="box3">
+                <input class="yelp-selection checkbox3" type="checkbox" name="location3">
+                <br>
+                <div id="display3"></div> &nbsp &nbsp &nbsp
+                <div id="displayname3"></div>
+            </div>
+
+            <br> <br> <br>
+
+            <div class="check" id="box4">
+                <input class="yelp-selection checkbox4" type="checkbox" name="location4">
+                <br>
+                <div id="display4"></div> &nbsp &nbsp &nbsp
+                <div id="displayname4"></div>
+            </div>
+
+            <br> <br> <br>
+
+            <div class='check' id="box5">
+                <input class="yelp-selection checkbox5" type="checkbox" name="location5">
+                <br>
+                <div id="display5"></div> &nbsp &nbsp
+                <div id="displayname5"></div>
+            </div>
+
+            <br> <br> <br>
+            <a id="submit-yelps" class="button expand">Add Items to Itinerary</a>
+            <!--<button id="submit-yelps">Add Items to Itinerary</button>-->
+            <button id="modal-close-button" class="close-button" data-close aria-label="Close modal" type="button">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.1/js/foundation.min.js" integrity="sha256-Nd2xznOkrE9HkrAMi4xWy/hXkQraXioBg9iYsBrcFrs=" crossorigin="anonymous"></script>
+        <script>
+            $(document).foundation();
+        </script>
+        <script async src="/assets/js/app.js"></script>
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCflzUUCLlSmZfOcRuo12ZM10u42uSM160">
+        </script>
+</body>
+
+</html>

@@ -1,0 +1,209 @@
+/*-------------------Sign In Button Start----------------------*/
+
+.button-hover-addcart {
+    border: 2px solid #767676;
+    border-radius: 8px;
+    background: white;
+    color: #767676;
+    text-transform: uppercase;
+    overflow: hidden;
+    letter-spacing: 0.07rem;
+    transition: all 0.2s ease-in-out;
+    position: relative;
+}
+
+.button-hover-addcart span {
+    transition: all 0.2s ease-in-out;
+}
+
+.button-hover-addcart .fa {
+    position: absolute;
+    font-size: 1.2rem;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    color: #5d5d5d;
+    right: -20px;
+    transition: 0.4s right cubic-bezier(0.38, 0.6, 0.48, 1);
+}
+
+.button-hover-addcart:hover {
+    border-color: #5d5d5d;
+    background: white;
+    transition: border-color 0.2s;
+}
+
+.button-hover-addcart:hover span {
+    margin-right: 20px;
+    color: #5d5d5d;
+}
+
+.button-hover-addcart:hover .fa {
+    right: 12px;
+}
+
+#sign-in-button {
+    position: relative;
+    top: 2vw;
+    left: 40vw;
+    width: 13vw;
+    opacity: .7;
+}
+
+#sign-in-button:hover {
+    opacity: 1;
+    background-color: white;
+}
+
+
+/*-------------------Nansen Logo----------------------*/
+
+#nansen-logo {
+    margin-top: 200px;
+}
+
+
+/*-------------------Index Search Bar----------------------*/
+
+#index-search {
+    position: relative;
+    top: 30vw;
+    opacity: .9;
+}
+
+#search-button {
+    background-color: #5d5d5d;
+}
+
+#search-button:hover {
+    background-color: #7d7d7d;
+    transition: .3;
+}
+
+.shadow {
+    -moz-box-shadow: 0 0 30px 5px #7d7d7d;
+    -webkit-box-shadow: 0 0 30px 5px #7d7d7d;
+}
+
+@media screen and (max-width: 768px) {
+    #sign-in-button {
+        width: 90vw;
+        left: 0vw;
+    }
+}
+
+#push-div {
+    height: 5000px;
+}
+
+#success-search {
+    position: relative;
+    height: 20px;
+    width: 100%;
+    height: 10%;
+    margin: auto;
+    align-content: right;
+}
+
+
+/*------------------------success page modal-------------------------------*/
+
+#new_Modal_1 {
+    -webkit-backface-visibility: ;
+    -moz-backface-visibility: ;
+    -ms-backface-visibility: ;
+    backface-visibility: ;
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
+    width: 100%;
+    height: 85%;
+    left: 50%;
+    top: 50%;
+    margin-left: -600px;
+    margin-top: 50px;
+    padding: 10px, 10px, 10px, 10px;
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: white;
+    color: black;
+    outline: none;
+}
+
+#modal_button {
+    position: relative;
+    left: 88%;
+    bottom: 5%;
+    top: 60%;
+}
+
+
+/*------------------------success page divs-------------------------------*/
+
+#passport-div {
+    margin-top: 30px;
+    padding: 0 10 0 10;
+    background-color: #fbfbfb;
+    color: black;
+    border-style: solid;
+    border-width: 1.5px;
+    border-color: #5d5d5d;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    text-align: center;
+    min-height: 30vw;
+    font-weight: bold;
+    opacity: .9;
+}
+
+#right-div {
+    margin-top: 30px;
+    padding: 0 10 0 10;
+    background-color: #fbfbfb;
+    color: black;
+    border-style: solid;
+    border-width: 1.5px;
+    border-color: #5d5d5d;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    text-align: center;
+    min-height: 30vw;
+    font-weight: bold;
+    opacity: .9;
+}
+
+#information-div {
+    margin-top: 30px;
+    padding-top: 15px;
+    background-color: #fbfbfb;
+    color: black;
+    border-style: solid;
+    border-width: 1.5px;
+    border-color: #5d5d5d;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    text-align: center;
+    min-height: 10vw;
+    font-size: 16px;
+    font-weight: bold;
+    opacity: .9;
+}
+
+#itinerary-header {
+    /*background-image: url("http://www.getmapping.com/sites/default/files/styles/post_image/public/quick_media/getmapping_mapping_OS_VectorMapLocal_4.jpg?itok=CWtgLzdZ");*/
+    /*max-width: 100%;*/
+    /*background-color: #9bc2cf;*/
+    height: 5vw;
+    line-height: 5vw;
+    font-size: 20px;
+}
+
+#passport-header {
+    /*background-image: url("https://www.usps.com/assets/images/ship/international/usps_passports_635x358_optimized.jpg");*/
+    /*max-width: 100%;*/
+    /*background-color: #9bc2cf;*/
+    height: 5vw;
+    line-height: 5vw;
+    font-size: 20px;
+}
